@@ -11,7 +11,7 @@ public class Person {
     private Date dateOfArrivel;
 
     public Person(Priority priority, String firstName, String secondName, String passportID, int personId, Date dateOfArrivel) {
-        this.insertCaunter = insertCaunter;
+
         this.priority = priority;
         this.firstName = firstName;
         this.secondName = secondName;
