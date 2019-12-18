@@ -33,7 +33,7 @@ public class DoubleLinkedList {
                 case MEDIUM: insertMedium(newNode);
                     break;
                 default: insertLow(newNode);
-            }   
+            }
         }
 
 
@@ -100,6 +100,42 @@ public class DoubleLinkedList {
         last = newNode;
         size++;
 
+    }
+
+    public Node deleteById(int id){
+        Node current = first;
+        while(current.getPerson().getPersonId() != id){
+            current = current.getNext();
+            if(current == null){
+                return null;
+            }
+        }
+        if(current == first){
+            first = current.getNext();
+        }else if(current == last){
+            last = current.getPrevious();
+            last.setNext(null);
+            current.setPrevious(null);
+        }else{
+            current.getPrevious().setNext(current.getNext());
+            current.getNext().setPrevious(current.getPrevious());
+        }
+        /*
+        * In this 2 if statements checking if deleted had high or medium priority
+        * if yes and previous node are same priority last node of this priority is changed if note it set to null
+        * */
+        if(current == lastMedium && current.getPrevious().getPerson().getPriority() == Priority.MEDIUM){
+            lastMedium = current.getPrevious();
+        }else{
+            lastMedium = null;
+        }
+        if (current == lastHigh && current.getPrevious().getPerson().getPriority() == Priority.HIGH){
+            lastHigh = current.getPrevious();
+        }else{
+            lastHigh = null;
+        }
+        size--;
+        return current;
     }
 
 
