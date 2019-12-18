@@ -49,9 +49,6 @@ public class Person {
         return dateOfArrivel;
     }
 
-    public void setInsertCounter(int insertCounter) {
-        this.insertCounter = insertCounter;
-    }
 
     public void setPriority(Priority priority) {
         this.priority = priority;
@@ -76,4 +73,5 @@ public class Person {
     public void setDateOfArrivel(Date dateOfArrivel) {
         this.dateOfArrivel = dateOfArrivel;
     }
+
 }

@@ -120,22 +120,53 @@ public class DoubleLinkedList {
             current.getPrevious().setNext(current.getNext());
             current.getNext().setPrevious(current.getPrevious());
         }
-        /*
-        * In this 2 if statements checking if deleted had high or medium priority
-        * if yes and previous node are same priority last node of this priority is changed if note it set to null
-        * */
-        if(current == lastMedium && current.getPrevious().getPerson().getPriority() == Priority.MEDIUM){
-            lastMedium = current.getPrevious();
+        checkPriority(current);
+        size--;
+        return current;
+    }
+
+    public Node deletLast(){
+        Node temp = last;
+        if(first.getNext() == null){
+            first = null;
+        }else{
+            last.getPrevious().setNext(null);
+        }
+        checkPriority(last);
+        last = last.getPrevious();
+        size--;
+        return temp;
+    }
+
+    /*
+     * In this 2 if statements checking if deleted had high or medium priority
+     * if yes and previous node are same priority last node of this priority is changed if note it set to null
+     * */
+    public void checkPriority(Node check){
+
+        if(check == lastMedium && check.getPrevious().getPerson().getPriority() == Priority.MEDIUM){
+            lastMedium = check.getPrevious();
         }else{
             lastMedium = null;
         }
-        if (current == lastHigh && current.getPrevious().getPerson().getPriority() == Priority.HIGH){
-            lastHigh = current.getPrevious();
+        if (check == lastHigh && check.getPrevious().getPerson().getPriority() == Priority.HIGH){
+            lastHigh = check.getPrevious();
         }else{
             lastHigh = null;
         }
-        size--;
-        return current;
+    }
+
+    public void outPrint(){
+        Node current = first;
+        while(current != null){
+            System.out.println("First Name: "+current.getPerson().getFirstName()+
+                    "Last Name: "+current.getPerson().getSecondName()+
+                    "Passport: "+current.getPerson().getPassportID()+
+                    "Date of Arrive: "+current.getPerson().getDateOfArrivel()+
+                    "ID: "+current.getPerson().getPersonId()+
+                    "Priority: "+current.getPerson().getPriority());
+            current = current.getNext();
+        }
     }
 
 
