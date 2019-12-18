@@ -4,25 +4,25 @@ import java.util.Date;
 
 public class Person {
 
-    private int insertCaunter = 0;
+    private int insertCounter = 0;
     private Priority priority;
     private String firstName, secondName, passportID;
     private int personId;
     private Date dateOfArrivel;
 
-    public Person(Priority priority, String firstName, String secondName, String passportID, int personId, Date dateOfArrivel) {
+    public Person(Priority priority, String firstName, String secondName, String passportID, Date dateOfArrivel) {
 
         this.priority = priority;
         this.firstName = firstName;
         this.secondName = secondName;
         this.passportID = passportID;
-        this.personId = personId;
+        this.personId = insertCounter;
         this.dateOfArrivel = dateOfArrivel;
-        this.insertCaunter++;
+        this.insertCounter++;
     }
 
-    public int getInsertCaunter() {
-        return insertCaunter;
+    public int getInsertCounter() {
+        return insertCounter;
     }
 
     public Priority getPriority() {
@@ -49,8 +49,8 @@ public class Person {
         return dateOfArrivel;
     }
 
-    public void setInsertCaunter(int insertCaunter) {
-        this.insertCaunter = insertCaunter;
+    public void setInsertCounter(int insertCounter) {
+        this.insertCounter = insertCounter;
     }
 
     public void setPriority(Priority priority) {

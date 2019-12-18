@@ -4,7 +4,7 @@ public enum Priority {
 
     HIGH(0),
     MEDIUM(1),
-    LOW(3);
+    LOW(2);
 
     private int position;
 
