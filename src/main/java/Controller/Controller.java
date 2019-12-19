@@ -73,6 +73,7 @@ public class Controller {
     * All method quite simple with some validations
     * */
     public void add(){
+        Person person;
         System.out.println("Please Enter First Name");
         String nameFirst = bufferR();
         if(!(checkeString(nameFirst))){

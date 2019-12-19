@@ -129,7 +129,7 @@ public class DoubleLinkedList {
             counter++;
             if(current == null){
                 System.out.println("Sorry no such ID");
-                new Controller().menu();
+
             }
         }
         System.out.println("THE PERSON IS ON POSITION: "+counter+", ID: "+current.getPerson().getPersonId()+
