@@ -4,9 +4,9 @@ import Model.Person;
 import Model.Priority;
 import View.View;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Date;
+import java.util.Random;
 
 
 public class Controller {
@@ -19,7 +19,11 @@ public class Controller {
 
         view = new View();
         list = new DoubleLinkedList();
-        fakeData();
+        try {
+            fakeData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         menu();
 
     }
@@ -108,17 +112,77 @@ public class Controller {
         list.checkById(number);
     }
 
-    public void fakeData(){
+    public void fakeData() throws IOException {
 
-        Person person1 = new Person(Priority.HIGH, "Taras", "Boreyko", "UA77771", new Date(System.currentTimeMillis()));
-        Person person2 = new Person(Priority.LOW, "Olga", "Kisilova", "RU77772", new Date(System.currentTimeMillis()));
-        Person person3 = new Person(Priority.HIGH, "Fellipe", "Mountovani", "ITA7773", new Date(System.currentTimeMillis()));
-        Person person4 = new Person(Priority.MEDIUM, "Coue", "Coue", "BR7778", new Date(System.currentTimeMillis()));
 
-        list.insertNew(person1);
-        list.insertNew(person2);
-        list.insertNew(person3);
-        list.insertNew(person4);
+        String fileName = "D:\\programing\\java\\DSA_SA\\src\\main\\java\\Controller\\names.txt";
+        File file = new File(fileName);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while((line = br.readLine()) != null){
+            //process the line
+            String[] newLine = line.split(" ");
+            Person person = new Person(getPriority(), newLine[0], newLine[1], getPassportID(), new Date(System.currentTimeMillis()));
+            list.insertNew(person);
+        }
+
+    }
+
+    /*
+    * This part of code generates random passport number will be used to create fake data
+    * I find this pice of code from https://www.geeksforgeeks.org/generate-random-string-of-given-size-in-java/
+    * */
+    public static String getPassportID()
+    {
+
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(8);
+
+        for (int i = 0; i < 8; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
+    }
+/*
+* Method for random priority will be used to create fake data
+*
+* */
+    public Priority getPriority() {
+        Random rand = new Random();
+
+        // Generate random integers in range 0 to 2
+        int randInt = rand.nextInt(3);
+        Priority priority;
+        switch (randInt) {
+            case 0:
+                priority =  Priority.HIGH;
+            break;
+            case 1:
+                priority = Priority.MEDIUM;
+            break;
+            case 2:
+                priority = Priority.LOW;
+            break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + randInt);
+        }
+        return priority;
     }
 
 
