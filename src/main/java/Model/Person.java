@@ -4,6 +4,13 @@ import java.util.Date;
 
 public class Person {
 
+    /*
+    *
+    * This Class is Person data that will be contain in node
+    * isnertCounter in general will give ID's. every time insert new person this counter add one
+    * easy way to generate ID's for person and make sure that they can't repeat
+    * */
+
     private static int insertCounter = 0;
     private Priority priority;
     private String firstName, secondName, passportID;

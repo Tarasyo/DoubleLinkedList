@@ -76,21 +76,24 @@ public class DoubleLinkedList {
 *
 * */
     public void insertMedium(Node newNode){
+        //if dont have high or medium go on the front
         if(lastMedium == null && lastHigh == null){
             newNode.setNext(first);
             first.setPrevious(newNode);
             first = newNode;
             lastMedium = newNode;
+            //if just dont have medium go after last high
         }else if(lastMedium == null){
             newNode.setNext(lastHigh.getNext());
             newNode.setPrevious(lastHigh);
             lastHigh.setNext(newNode);
+            //in anothe case will take position of last Medium priority
         }else{
             newNode.setNext(lastMedium.getNext());
             newNode.setPrevious(lastMedium);
             lastMedium.setNext(newNode);
         }
-
+            //this part is the same like in high priority to check if it's last or not
         if (newNode.getNext() == null) {
             last = newNode;
         } else {
@@ -108,7 +111,7 @@ public class DoubleLinkedList {
         size++;
 
     }
-    //Method in future will be used to look with while loop for id of node and outprin this node info with number in which he is in the que
+    //Method in future will be used to look with while loop for id of node and outprin this node info with number in which he is in the queue
     public void checkById(int id) {
         Node current = first;
         int counter = 1;
@@ -127,6 +130,8 @@ public class DoubleLinkedList {
                 ", Date of Arrive: "+current.getPerson().getDateOfArrivel()
         );
     }
+    //in general this method woks like checkByID but in second half it change the reference of neighbour nodes and in this way
+    // if the reference to this node lost it go to garbage collector
     public Node deleteById(int id){
         Node current = first;
         while(current.getPerson().getPersonId() != id){
@@ -135,12 +140,14 @@ public class DoubleLinkedList {
                 return null;
             }
         }
+        //if it's first or last node need to refer the first or last of the list
         if(current == first){
             first = current.getNext();
         }else if(current == last){
             last = current.getPrevious();
             last.setNext(null);
             current.setPrevious(null);
+            //another way just change neighbour nodes reference
         }else{
             current.getPrevious().setNext(current.getNext());
             current.getNext().setPrevious(current.getPrevious());
@@ -149,7 +156,7 @@ public class DoubleLinkedList {
         size--;
         return current;
     }
-
+        //delete last beter to keep in temporary variable to change reference of previous node and then to initialize the previous to the like last
     public Node deletLast(){
         Node temp = last;
         if(first.getNext() == null){
@@ -181,6 +188,7 @@ public class DoubleLinkedList {
         }
     }
 
+    //just out print all list
     public void outPrint(){
         Node current = first;
         while(current != null){

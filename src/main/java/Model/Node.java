@@ -1,5 +1,9 @@
 package Model;
 
+/*
+* Class node that will contain person data and next previous node;
+*
+* */
 public class Node {
 
     private Node next;
