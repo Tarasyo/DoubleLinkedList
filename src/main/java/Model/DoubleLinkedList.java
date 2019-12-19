@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.Controller;
+
 public class DoubleLinkedList {
 
     private Node first;
@@ -111,7 +113,7 @@ public class DoubleLinkedList {
         size++;
 
     }
-    //Method in future will be used to look with while loop for id of node and outprin this node info with number in which he is in the queue
+    //Method in future will be used to look with while loop for id of node and out print this node info with number in which he is in the queue
     public void checkById(int id) {
         Node current = first;
         int counter = 1;
@@ -120,6 +122,7 @@ public class DoubleLinkedList {
             counter++;
             if(current == null){
                 System.out.println("Sorry no such ID");
+                new Controller().menu();
             }
         }
         System.out.println("THE PERSON IS ON POSITION: "+counter+", ID: "+current.getPerson().getPersonId()+
@@ -129,6 +132,18 @@ public class DoubleLinkedList {
                 ", Passport: "+current.getPerson().getPassportID()+
                 ", Date of Arrive: "+current.getPerson().getDateOfArrivel()
         );
+    }
+    //This method same like checkById but here will return the node with this ID.
+    public Node updateById(int id) {
+        Node current = first;
+        while(current.getPerson().getPersonId() != id){
+            current = current.getNext();
+            if(current == null){
+                System.out.println("Sorry no such ID");
+                return null;
+            }
+        }
+        return current;
     }
     //in general this method woks like checkByID but in second half it change the reference of neighbour nodes and in this way
     // if the reference to this node lost it go to garbage collector
@@ -199,6 +214,7 @@ public class DoubleLinkedList {
                             ", Passport: "+current.getPerson().getPassportID()+
                             ", Date of Arrive: "+current.getPerson().getDateOfArrivel()
                     );
+            System.out.println("--------------------------------------------------------");
             current = current.getNext();
         }
     }
