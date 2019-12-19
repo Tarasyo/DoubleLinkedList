@@ -1,4 +1,11 @@
 package Model;
+/*
+ * TARAS BOREYKO
+ * ID 2017284
+ *
+ *
+ *
+ * */
 
 import java.util.Date;
 

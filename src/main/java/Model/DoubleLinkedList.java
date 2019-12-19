@@ -1,5 +1,12 @@
 package Model;
 
+/*
+ * TARAS BOREYKO
+ * ID 2017284
+ *
+ *
+ *
+ * */
 import Controller.Controller;
 
 public class DoubleLinkedList {
