@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Person {
 
-    private int insertCounter = 0;
+    private static int insertCounter = 0;
     private Priority priority;
     private String firstName, secondName, passportID;
     private int personId;

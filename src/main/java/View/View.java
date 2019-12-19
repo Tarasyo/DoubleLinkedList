@@ -8,6 +8,8 @@ public class View {
 
     public View() {
 
+        System.out.println("-------------MENU---------------");
+
         menu = new ArrayList<>();
 
         menu.add("1. ADD person");
@@ -15,5 +17,8 @@ public class View {
         menu.add("3. SEARCH person");
         menu.add("4. DELETE number of person from the end");
         menu.add("5. See the whole queue");
+    }
+    public ArrayList getMenu() {
+        return menu;
     }
 }
