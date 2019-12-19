@@ -121,7 +121,7 @@ public class DoubleLinkedList {
 
     }
     //Method in future will be used to look with while loop for id of node and out print this node info with number in which he is in the queue
-    public void checkById(int id) {
+    public Node checkById(int id) {
         Node current = first;
         int counter = 1;
         while(current.getPerson().getPersonId() != id){
@@ -129,9 +129,10 @@ public class DoubleLinkedList {
             counter++;
             if(current == null){
                 System.out.println("Sorry no such ID");
-
+               return null;
             }
         }
+
         System.out.println("THE PERSON IS ON POSITION: "+counter+", ID: "+current.getPerson().getPersonId()+
                 ", Priority: "+current.getPerson().getPriority()+
                 ", First Name: "+current.getPerson().getFirstName()+
@@ -139,6 +140,7 @@ public class DoubleLinkedList {
                 ", Passport: "+current.getPerson().getPassportID()+
                 ", Date of Arrive: "+current.getPerson().getDateOfArrivel()
         );
+        return current;
     }
     //This method same like checkById but here will return the node with this ID.
     public Node updateById(int id) {
